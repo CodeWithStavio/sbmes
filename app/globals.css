@@ -2,26 +2,277 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    direction: rtl;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply bg-light text-dark font-cairo antialiased;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary-dark;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* ── Glass Morphism ── */
+  .glass {
+    @apply backdrop-blur-xl bg-white/70 border border-white/20 shadow-lg;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-xl bg-dark/70 border border-white/10 shadow-lg;
+  }
+
+  /* ── Layout Utilities ── */
+  .section-padding {
+    @apply py-24 px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* ── Typography ── */
+  .gradient-text {
+    @apply bg-gradient-to-l from-primary via-primary-light to-primary-dark bg-clip-text text-transparent;
+  }
+
+  .gradient-text-accent {
+    @apply bg-gradient-to-l from-accent via-accent-light to-accent-dark bg-clip-text text-transparent;
+  }
+
+  /* ── Cards ── */
+  .card-hover {
+    @apply transition-all duration-500 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1;
+  }
+
+  /* ── Gradient Border Wrapper ── */
+  .gradient-border {
+    @apply relative rounded-2xl p-[1.5px];
+    background: linear-gradient(135deg, #1B6B6B, #238F8F, #C41E3A, #0F4C4C);
+    background-size: 300% 300%;
+    animation: borderShift 6s ease infinite;
+  }
+
+  /* ── Button Styles ── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3 bg-primary text-white font-semibold rounded-xl
+           hover:bg-primary-dark transition-all duration-300
+           hover:shadow-lg hover:shadow-primary/25
+           active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3 border-2 border-primary text-primary font-semibold rounded-xl
+           hover:bg-primary hover:text-white transition-all duration-300
+           active:scale-[0.98];
+  }
+
+  /* ── Section Divider ── */
+  .section-divider {
+    @apply relative;
+  }
+
+  .section-divider::before {
+    content: "";
+    @apply absolute top-0 left-1/2 -translate-x-1/2 w-24 h-[2px] rounded-full;
+    background: linear-gradient(to left, #1B6B6B, #238F8F, #0F4C4C);
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* ── Grid Pattern Background ── */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(27, 107, 107, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 107, 107, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Shimmer Overlay ── */
+.shimmer {
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmerMove 3s ease-in-out infinite;
+}
+
+@keyframes shimmerMove {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Gradient Border Animation ── */
+@keyframes borderShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ── Heartbeat line animation ── */
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.heartbeat-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 3s ease-in-out forwards;
+}
+
+/* ── Gradient background animation ── */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* ── Floating animation ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* ── Particle drift ── */
+@keyframes particleDrift {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-100vh) translateX(50px) scale(0.5); opacity: 0; }
+}
+
+/* ── Glow pulse ── */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* ── Reveal slide ── */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-light;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/25 rounded-full;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/50;
+}
+
+/* ── Noise Texture (very subtle) ── */
+.noise-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Hero Grid Pattern (CSS only) ── */
+.grid-pattern-hero {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Scroll indicator slide down ── */
+@keyframes slideDown {
+  0%, 100% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(12px); opacity: 0.2; }
+}
+
+/* ── Focus Ring Styles ── */
+*:focus-visible {
+  @apply outline-none ring-2 ring-primary/40 ring-offset-2;
+}
+
+/* ── Performance: Content Visibility for below-fold sections ── */
+#about,
+#board,
+#services,
+#membership,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+
+/* ── Performance: will-change for animated elements ── */
+.card-hover {
+  will-change: transform;
+}
+
+/* ── Performance: Reduce motion for users who prefer it ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .shimmer,
+  .animated-gradient,
+  .heartbeat-line {
+    animation: none !important;
+  }
+}
+
+/* ── Print Styles ── */
+@media print {
+  nav,
+  footer,
+  .shimmer,
+  .noise-bg::after {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }
