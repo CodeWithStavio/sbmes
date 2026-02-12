@@ -49,6 +49,11 @@ const coFounders = [
     role: "Co-Founder",
   },
   {
+    name: "م. محمد بشير متولي",
+    title: "مؤسس مشارك",
+    role: "Co-Founder",
+  },
+  {
     name: "م. هزار تغلبي",
     title: "مؤسس مشارك",
     role: "Co-Founder",
@@ -59,7 +64,7 @@ const coFounders = [
     role: "Co-Founder",
   },
   {
-    name: "م. رجاء",
+    name: "م. رجاء بقلة",
     title: "مؤسس مشارك",
     role: "Co-Founder",
   },

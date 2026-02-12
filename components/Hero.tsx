@@ -202,13 +202,6 @@ export default function Hero() {
           </button>
         </motion.div>
       </div>
-
-      {/* Scroll indicator - CSS animation */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 pointer-events-none animate-fade-in [animation-delay:1.5s] [animation-fill-mode:both]">
-        <div className="w-6 h-10 border-2 border-white/25 rounded-full flex justify-center pt-2 animate-float">
-          <div className="w-1 h-2 bg-white/50 rounded-full animate-[slideDown_2s_ease-in-out_infinite]" />
-        </div>
-      </div>
     </section>
   );
 }

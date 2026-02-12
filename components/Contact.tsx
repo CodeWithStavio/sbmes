@@ -114,7 +114,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-sm text-gray">{info.label}</p>
-                      <p className="font-medium text-dark">{info.value}</p>
+                      <p className="font-medium text-dark" dir="ltr">{info.value}</p>
                     </div>
                   </motion.a>
                 );

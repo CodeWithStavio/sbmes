@@ -90,7 +90,7 @@ export default function Navbar() {
         {/* Logo */}
         <button
           onClick={() => handleClick("#hero")}
-          className="relative shrink-0 group"
+          className="relative shrink-0 group flex items-center gap-3"
         >
           <Image
             src="/logo.png"
@@ -104,6 +104,13 @@ export default function Navbar() {
                 : "drop-shadow-[0_1px_8px_rgba(255,255,255,0.15)]"
             }`}
           />
+          <span
+            className={`hidden lg:block text-sm font-bold transition-all duration-500 ${
+              scrolled ? "text-dark" : "text-white drop-shadow-sm"
+            }`}
+          >
+            الجمعية السورية للهندسة الطبية
+          </span>
         </button>
 
         {/* Desktop Nav */}
