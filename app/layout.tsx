@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     siteName: "SBMES",
     images: [
       {
-        url: "/og-image.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "SBMES - الجمعية السورية للهندسة الطبية الحيوية",
@@ -95,7 +95,7 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description:
       "أول جمعية علمية مهنية غير ربحية تعمل على تطوير الهندسة الطبية الحيوية في سوريا",
-    images: ["/og-image.png"],
+    images: ["/logo.png"],
     creator: "@sbmes_sy",
     site: "@sbmes_sy",
   },

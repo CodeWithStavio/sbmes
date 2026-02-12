@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
-import Image from "next/image";
 
 const navLinks = [
   { href: "#hero", label: "الرئيسية" },
@@ -90,22 +89,10 @@ export default function Navbar() {
         {/* Logo */}
         <button
           onClick={() => handleClick("#hero")}
-          className="relative shrink-0 group flex items-center gap-3"
+          className="relative shrink-0 group"
         >
-          <Image
-            src="/logo.png"
-            alt="SBMES - الجمعية السورية للهندسة الطبية"
-            width={150}
-            height={100}
-            priority
-            className={`h-9 md:h-11 w-auto object-contain transition-all duration-500 ${
-              scrolled
-                ? ""
-                : "drop-shadow-[0_1px_8px_rgba(255,255,255,0.15)]"
-            }`}
-          />
           <span
-            className={`hidden lg:block text-sm font-bold transition-all duration-500 ${
+            className={`text-sm md:text-base font-bold transition-all duration-500 ${
               scrolled ? "text-dark" : "text-white drop-shadow-sm"
             }`}
           >
